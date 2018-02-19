@@ -2,7 +2,6 @@ package csp.learning.java.lambdas;
 
 import csp.learning.java.lambdas.model.Album;
 import csp.learning.java.lambdas.model.Artist;
-import csp.learning.java.lambdas.model.Track;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -11,21 +10,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static csp.learning.java.lambdas.Lambdas.*;
+import static csp.learning.java.lambdas.MusicTestData.*;
 import static java.util.Calendar.AUGUST;
 import static java.util.Calendar.DECEMBER;
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.entry;
 
 class LambdasTest {
-
-    private final Artist johnMayer = Artist.named("John Mayer").from("Bridgeport");
-    private final Artist fooFighters = Artist.named("Foo Fighters").from("Seattle");
-    private final Artist theShins = Artist.named("The Shins").from("Albuquerque");
-    private final Artist theTallestManOnEarth = Artist.named("The Tallest Man on Earth").from("Dalarna");
 
     @ParameterizedTest(name = "[{index}] {0} -> {1}")
     @MethodSource("dates")
@@ -69,43 +65,105 @@ class LambdasTest {
                         6
                 ),
                 Arguments.of(
-                        Stream.of(-2, 10, 3),
-                        11
+                        Stream.of(2, -10, 3),
+                        -5
                 )
         );
     }
 
     @Test
-    void testOrganizationOfArtistsByOrigin() {
-        Stream<Artist> artists = Stream.of(johnMayer, fooFighters, theShins, theTallestManOnEarth);
-        Map<String, String> artistNameToOrigin = byOrigin(artists);
+    void testGetNamesAndOrigins() {
+        List<Artist> artists = Stream.of(johnMayer, fooFighters, theShins, theTallestManOnEarth).collect(toList());
+        List<String> namesAndOrigins = getNamesAndOrigins(artists);
 
-        assertThat(artistNameToOrigin).contains(
-                entry("John Mayer", "Bridgeport"),
-                entry("Foo Fighters", "Seattle"),
-                entry("The Shins", "Albuquerque"),
-                entry("The Tallest Man on Earth", "Dalarna")
+        assertThat(namesAndOrigins).containsExactlyInAnyOrder(
+                johnMayer.getName(),
+                johnMayer.getOrigin(),
+                fooFighters.getName(),
+                fooFighters.getOrigin(),
+                theShins.getName(),
+                theShins.getOrigin(),
+                theTallestManOnEarth.getName(),
+                theTallestManOnEarth.getOrigin()
         );
     }
 
     @Test
     void excludeAlbumsWithMoreThanThreeTracks() {
-        Album wastingLight = Album.named("Wasting Light")
-                                  .by(fooFighters)
-                                  .with(Track.named("These Days"));
+        List<Album> albums = Stream.of(oneTrackAlbum, fourTrackAlbum, zeroTrackAlbum).collect(toList());
+        List<Album> remainingAlbums = getAlbumsWithAtMostThreeTracks(albums);
+        assertThat(remainingAlbums).containsExactlyInAnyOrder(oneTrackAlbum, zeroTrackAlbum);
+    }
 
-        Album continuum = Album.named("Continuum")
-                               .by(johnMayer)
-                               .with(Track.named("Belief"))
-                               .with(Track.named("Gravity"))
-                               .with(Track.named("Vultures"))
-                               .with(Track.named("In Repair"));
+    @Test
+    void testGetTotalMembers() {
+        List<Artist> artists = Stream.of(johnMayer, fooFighters, theShins, theTallestManOnEarth).collect(toList());
+        long memberCount = getTotalMembers(artists);
+        assertThat(memberCount).isEqualTo(14);
+    }
 
-        Album chutesTooNarrow = Album.named("Chutes Too Narrow");
+    @ParameterizedTest(name = "[{index}] \"{0}\" has {1} lowercase letter(s)")
+    @MethodSource("strings")
+    void countingLowercaseLetters(String string, int expectedCount) {
+        int numberOfLowercaseLetters = countLowercaseLetters(string);
+        assertThat(numberOfLowercaseLetters).isEqualTo(expectedCount);
+    }
 
-        Stream<Album> albums = Stream.of(wastingLight, continuum, chutesTooNarrow);
-        List<Album> filtered = filterIfContainsAtMostThreeTracks(albums);
-        assertThat(filtered).contains(wastingLight, chutesTooNarrow);
+    private static Stream<Arguments> strings() {
+        return Stream.of(
+                Arguments.of("", 0),
+                Arguments.of("   ", 0),
+                Arguments.of("Hello, world", 9),
+                Arguments.of("HELLO, WORLD", 0),
+                Arguments.of("h3llo, W@RLd", 5)
+        );
+    }
+
+    @Test
+    void findingStringWithMostLowercaseLetters() {
+        List<String> strings = Stream.of("First", "SECOND", "THiRD").collect(toList());
+        Optional<String> stringWithMostLowercaseLetters = mostLowercaseLetters(strings);
+        assertThat(stringWithMostLowercaseLetters).contains("First");
+    }
+
+    @Test
+    void findingMostLowercaseStringInEmptyListReturnsEmptyOptional() {
+        Optional<String> stringWithMostLowercaseLetters = mostLowercaseLetters(emptyList());
+        assertThat(stringWithMostLowercaseLetters).isEmpty();
+    }
+
+    @Test
+    void testMapFunction() {
+        Stream<Artist> artists = Stream.of(johnMayer, fooFighters, theShins, theTallestManOnEarth);
+        Stream<String> artistNames = map(artists, Artist::getName);
+        assertThat(artistNames).contains(
+                johnMayer.getName(),
+                fooFighters.getName(),
+                theShins.getName(),
+                theTallestManOnEarth.getName()
+        );
+    }
+
+    @Test
+    void applyingMapFunctionToEmptyStreamReturnsEmptyStream() {
+        Stream<String> resultStream = map(Stream.empty(), Artist::getName);
+        assertThat(resultStream).isEmpty();
+    }
+
+    @Test
+    void testFilterFunction() {
+        Stream<Artist> artists = Stream.of(johnMayer, fooFighters, theShins, theTallestManOnEarth);
+        Stream<Artist> groups = filter(artists, Artist::isGroup);
+        assertThat(groups).contains(
+                fooFighters,
+                theShins
+        );
+    }
+
+    @Test
+    void applyingFilterFunctionToEmptyStreamReturnsEmptyStream() {
+        Stream<Artist> resultStream = filter(Stream.empty(), Artist::isGroup);
+        assertThat(resultStream).isEmpty();
     }
 
 }
