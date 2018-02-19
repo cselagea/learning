@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 /**
  * A single release of music, comprising several tracks.
  */
-public class Album {
+public class Album implements Performance {
 
     private String name;
     private Set<Track> tracks = new HashSet<>();
@@ -34,6 +34,7 @@ public class Album {
         return this;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -42,6 +43,7 @@ public class Album {
         return tracks.stream();
     }
 
+    @Override
     public Stream<Artist> getMusicians() {
         return musicians.stream();
     }

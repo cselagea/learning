@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import static csp.learning.java.lambdas.Lambdas.*;
-import static csp.learning.java.lambdas.MusicTestData.*;
+import static csp.learning.java.lambdas.model.MusicTestData.*;
 import static java.util.Calendar.AUGUST;
 import static java.util.Calendar.DECEMBER;
 import static java.util.Collections.emptyList;
