@@ -3,8 +3,6 @@ package csp.learning.java.java8;
 import csp.learning.java.java8.model.Album;
 import csp.learning.java.java8.model.Artist;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +14,6 @@ import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
 public class Streams {
-
-    public static final ThreadLocal<DateFormat> threadLocalDateFormat = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd-MMM-yyyy"));
 
     public static int addUp(Stream<Integer> numbers) {
         return numbers.mapToInt(number -> number)
