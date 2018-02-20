@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static csp.learning.java.java8.Streams.*;
+import static csp.learning.java.java8.StreamApiExamples.*;
 import static csp.learning.java.java8.model.MusicTestData.*;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class StreamsTest {
+class StreamApiExamplesTest {
 
     @ParameterizedTest(name = "[{index}] sum = {1}")
     @MethodSource("numbers")

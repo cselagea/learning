@@ -12,12 +12,12 @@ import static java.util.Calendar.AUGUST;
 import static java.util.Calendar.DECEMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LambdasTest {
+class LambdaExamplesTest {
 
     @ParameterizedTest(name = "[{index}] {0} -> {1}")
     @MethodSource("dates")
     void testDateFormatting(Date date, String expectedFormat) {
-        String formattedDate = Lambdas.threadLocalDateFormat.get().format(date);
+        String formattedDate = LambdaExamples.threadLocalDateFormat.get().format(date);
         assertThat(formattedDate).isEqualTo(expectedFormat);
     }
 

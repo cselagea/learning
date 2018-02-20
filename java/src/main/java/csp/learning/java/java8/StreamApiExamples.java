@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
-public class Streams {
+public class StreamApiExamples {
 
     public static int addUp(Stream<Integer> numbers) {
         return numbers.mapToInt(number -> number)
@@ -46,7 +46,7 @@ public class Streams {
 
     public static Optional<String> mostLowercaseLetters(List<String> strings) {
         return strings.stream()
-                      .max(comparing(Streams::countLowercaseLetters));
+                      .max(comparing(StreamApiExamples::countLowercaseLetters));
     }
 
     public static <T, R> Stream<R> map(Stream<T> stream, Function<? super T, ? extends R> mapper) {
