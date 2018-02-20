@@ -1,8 +1,8 @@
-package csp.learning.java.lambdas;
+package csp.learning.java.java8;
 
-import csp.learning.java.lambdas.model.Album;
-import csp.learning.java.lambdas.model.Artist;
-import csp.learning.java.lambdas.model.Track;
+import csp.learning.java.java8.model.Album;
+import csp.learning.java.java8.model.Artist;
+import csp.learning.java.java8.model.Track;
 
 import java.util.*;
 import java.util.function.BiConsumer;

@@ -1,4 +1,4 @@
-package csp.learning.java.lambdas.model;
+package csp.learning.java.java8.model;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import static csp.learning.java.lambdas.model.MusicTestData.*;
+import static csp.learning.java.java8.model.MusicTestData.*;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 

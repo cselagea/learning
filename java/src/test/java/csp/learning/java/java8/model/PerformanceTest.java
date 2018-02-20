@@ -1,10 +1,10 @@
-package csp.learning.java.lambdas.model;
+package csp.learning.java.java8.model;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;
 
-import static csp.learning.java.lambdas.model.MusicTestData.theShins;
+import static csp.learning.java.java8.model.MusicTestData.theShins;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PerformanceTest {

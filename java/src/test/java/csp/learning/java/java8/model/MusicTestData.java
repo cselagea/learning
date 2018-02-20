@@ -1,4 +1,4 @@
-package csp.learning.java.lambdas.model;
+package csp.learning.java.java8.model;
 
 public class MusicTestData {
 

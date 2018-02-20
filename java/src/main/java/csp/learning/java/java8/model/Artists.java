@@ -1,4 +1,4 @@
-package csp.learning.java.lambdas.model;
+package csp.learning.java.java8.model;
 
 import java.util.List;
 import java.util.Optional;

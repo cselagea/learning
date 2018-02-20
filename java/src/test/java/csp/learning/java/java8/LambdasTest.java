@@ -1,7 +1,7 @@
-package csp.learning.java.lambdas;
+package csp.learning.java.java8;
 
-import csp.learning.java.lambdas.model.Album;
-import csp.learning.java.lambdas.model.Artist;
+import csp.learning.java.java8.model.Album;
+import csp.learning.java.java8.model.Artist;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static csp.learning.java.lambdas.Lambdas.*;
-import static csp.learning.java.lambdas.model.MusicTestData.*;
+import static csp.learning.java.java8.Lambdas.*;
+import static csp.learning.java.java8.model.MusicTestData.*;
 import static java.util.Calendar.AUGUST;
 import static java.util.Calendar.DECEMBER;
 import static java.util.Collections.emptyList;

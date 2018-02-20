@@ -1,6 +1,6 @@
-package csp.learning.java.lambdas;
+package csp.learning.java.java8;
 
-import csp.learning.java.lambdas.Collectors.StringConcatenator;
+import csp.learning.java.java8.Collectors.StringConcatenator;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;

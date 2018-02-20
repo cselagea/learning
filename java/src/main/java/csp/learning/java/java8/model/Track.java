@@ -1,4 +1,4 @@
-package csp.learning.java.lambdas.model;
+package csp.learning.java.java8.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
