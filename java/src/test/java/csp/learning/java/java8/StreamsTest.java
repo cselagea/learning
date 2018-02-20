@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static csp.learning.java.java8.Lambdas.*;
+import static csp.learning.java.java8.Streams.*;
 import static csp.learning.java.java8.model.MusicTestData.*;
 import static java.util.Calendar.AUGUST;
 import static java.util.Calendar.DECEMBER;
@@ -21,7 +21,7 @@ import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LambdasTest {
+class StreamsTest {
 
     @ParameterizedTest(name = "[{index}] {0} -> {1}")
     @MethodSource("dates")

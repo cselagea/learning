@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
-public class Lambdas {
+public class Streams {
 
     public static final ThreadLocal<DateFormat> threadLocalDateFormat = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd-MMM-yyyy"));
 
@@ -50,7 +50,7 @@ public class Lambdas {
 
     public static Optional<String> mostLowercaseLetters(List<String> strings) {
         return strings.stream()
-                      .max(comparing(Lambdas::countLowercaseLetters));
+                      .max(comparing(Streams::countLowercaseLetters));
     }
 
     public static <T, R> Stream<R> map(Stream<T> stream, Function<? super T, ? extends R> mapper) {
