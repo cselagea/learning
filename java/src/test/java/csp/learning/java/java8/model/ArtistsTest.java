@@ -16,7 +16,6 @@ class ArtistsTest {
 
     private static final List<Artist> artistList = asList(johnMayer, fooFighters, theShins, theTallestManOnEarth);
     private static final Artists artists = new Artists(artistList);
-    private static final String UNKNOWN = "unknown";
 
     @ParameterizedTest(name = "[{index}] index = {0}")
     @MethodSource("indices")
