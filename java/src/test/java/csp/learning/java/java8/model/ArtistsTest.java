@@ -26,7 +26,7 @@ class ArtistsTest {
     }
 
     @Test
-    void getArtistWithOutOfBoundsIndexReturnsEmptyOptional() {
+    void getArtistWithOutOfBoundsIndex() {
         Optional<Artist> artist = artists.getArtist(-1);
         assertThat(artist).isEmpty();
     }
@@ -34,14 +34,14 @@ class ArtistsTest {
     @ParameterizedTest(name = "[{index}] index = {0}")
     @MethodSource("indices")
     void getArtistNameWithInBoundsIndex(int index) {
-        String artistName = artists.getArtistName(index);
-        assertThat(artistName).isNotEqualTo(UNKNOWN);
+        Optional<String> artistName = artists.getArtistName(index);
+        assertThat(artistName).isNotEmpty();
     }
 
     @Test
-    void getArtistNameWithOutOfBoundsIndexReturnsUnknown() {
-        String artistName = artists.getArtistName(-1);
-        assertThat(artistName).isEqualTo(UNKNOWN);
+    void getArtistNameWithOutOfBoundsIndex() {
+        Optional<String> artistName = artists.getArtistName(-1);
+        assertThat(artistName).isEmpty();
     }
 
     private static IntStream indices() {

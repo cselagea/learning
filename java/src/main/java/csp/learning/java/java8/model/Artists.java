@@ -18,10 +18,8 @@ public class Artists {
         return Optional.of(artists.get(index));
     }
 
-    public String getArtistName(int index) {
-        Optional<Artist> artist = getArtist(index);
-        return artist.map(Artist::getName)
-                     .orElse("unknown");
+    public Optional<String> getArtistName(int index) {
+        return getArtist(index).map(Artist::getName);
     }
 
 }
