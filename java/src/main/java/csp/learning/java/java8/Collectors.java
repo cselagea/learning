@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
-public class CollectorExamples {
+public class Collectors {
 
     public static Optional<Artist> findArtistWithMostMembers(Stream<Artist> artists) {
         Function<Artist, Long> numberOfMembers = artist -> artist.getMembers().count();

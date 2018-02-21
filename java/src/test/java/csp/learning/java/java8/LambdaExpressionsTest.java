@@ -8,16 +8,17 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.stream.Stream;
 
+import static csp.learning.java.java8.LambdaExpressions.threadLocalDateFormat;
 import static java.util.Calendar.AUGUST;
 import static java.util.Calendar.DECEMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LambdaExamplesTest {
+class LambdaExpressionsTest {
 
     @ParameterizedTest(name = "[{index}] {0} -> {1}")
     @MethodSource("dates")
     void testDateFormatting(Date date, String expectedFormat) {
-        String formattedDate = LambdaExamples.threadLocalDateFormat.get().format(date);
+        String formattedDate = threadLocalDateFormat.get().format(date);
         assertThat(formattedDate).isEqualTo(expectedFormat);
     }
 

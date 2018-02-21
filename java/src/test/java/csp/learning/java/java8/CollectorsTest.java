@@ -1,13 +1,13 @@
 package csp.learning.java.java8;
 
-import csp.learning.java.java8.CollectorExamples.StringConcatenator;
+import csp.learning.java.java8.Collectors.StringConcatenator;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CollectorExamplesTest {
+class CollectorsTest {
 
     @Test
     void testStringConcatenation() {
