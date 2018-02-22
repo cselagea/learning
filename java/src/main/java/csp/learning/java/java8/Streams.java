@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.toList;
 public class Streams {
 
     public static int addUp(Stream<Integer> numbers) {
-        return numbers.mapToInt(number -> number)
+        return numbers.mapToInt(Integer::intValue)
                       .sum();
     }
 
