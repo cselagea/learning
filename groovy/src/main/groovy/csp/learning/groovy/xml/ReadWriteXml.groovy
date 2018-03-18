@@ -2,8 +2,7 @@ package csp.learning.groovy.xml
 
 import groovy.xml.StreamingMarkupBuilder
 
-def resourcesDirRelativePath = '../../../../../resources'
-def gpxFile = new File(resourcesDirRelativePath + '/fells_loop_full.gpx')
+def gpxFile = new File(getClass().getClassLoader().getResource('fells_loop_full.gpx').toURI())
 def slurper = new XmlSlurper()
 def gpsData = slurper.parse(gpxFile)
 
@@ -19,5 +18,5 @@ def xml = new StreamingMarkupBuilder().bind {
     }
 }
 
-def outFile = new File(resourcesDirRelativePath + '/fells_loop_truncated.xml')
+def outFile = new File(gpxFile.parentFile, 'fells_loop_truncated.xml')
 outFile.write(xml.toString())
