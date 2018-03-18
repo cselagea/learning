@@ -6,14 +6,12 @@ package csp.learning.groovy.rest
         version = '0.7.1'
 )
 
-import groovyx.net.http.RESTClient
-
-class RESTApi {
+class RESTClient {
 
     private restClient
 
-    RESTApi() {
-        restClient = new RESTClient('https://my-json-server.typicode.com/')
+    RESTClient() {
+        restClient = new groovyx.net.http.RESTClient('https://my-json-server.typicode.com/')
     }
 
     def get() {
