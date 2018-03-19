@@ -8,8 +8,8 @@ import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Annotations containing the {@code @Inherited} meta-annotation are inherited from superclasses, but not from implemented interfaces.
- * Also it doesn't work with annotations on methods, constructors, fields, etc.
+ * Annotations containing the {@code @Inherited} meta-annotation are inherited from superclasses,
+ * but not from implemented interfaces, methods, constructors, fields, etc.
  */
 public class InheritedAnnotations {
 
@@ -38,6 +38,13 @@ public class InheritedAnnotations {
 
     @InheritableAnnotation(NEW_VALUE)
     static class OverridesInheritedAnnotation extends InheritsOneAnnotation {
+    }
+
+    @InheritableAnnotation(ACCESS_ME)
+    interface InheritedAnnotationInterface {
+    }
+
+    static class NoInheritedAnnotations implements InheritedAnnotationInterface {
     }
 
 }
